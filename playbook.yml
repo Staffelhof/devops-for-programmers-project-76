@@ -1,0 +1,8 @@
+- name: Common playbook
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  roles:
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
