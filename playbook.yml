@@ -1,8 +1,18 @@
-- name: Common playbook
-  hosts: all
-  become: yes
-  become_method: sudo
+- hosts: all
+  become: true
 
-  roles:
-    - role: geerlingguy.pip
-    - role: geerlingguy.docker
+  tasks:
+    - name: create env
+      template:
+        src: .env.redmine.j2
+        dest: '{{ ansible_env.HOME }}/.env.redmine.j2.redmine'
+        mode: '660'
+      tags: deploy
+    - name: start redmine
+      community.docker.docker_container:
+        name: redmine
+        image: redmine
+        ports:
+          - "{{ redmine_port }}:3000"
+        env_file: '{{ ansible_env.HOME }}/.env.redmine.j2.redmine'
+      tags: deploy

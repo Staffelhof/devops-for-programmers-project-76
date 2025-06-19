@@ -1,4 +1,4 @@
 init:
 	ansible-playbook -i inventory.ini playbook.yml
 deploy:
-	ansible-playbook -i inventory.ini playbook.yml
+	ansible-playbook playbook.yml -i inventory.ini -t deploy
