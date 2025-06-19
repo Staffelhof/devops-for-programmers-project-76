@@ -2,3 +2,11 @@ pip_install_packages:
   - name: docker
 
 redmine_port: 80
+
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - url: "http://localhost:3000"
+        name: "Redmine Service"
+        timeout: 5

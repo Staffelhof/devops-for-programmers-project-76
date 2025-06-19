@@ -5,7 +5,7 @@
     - name: create env
       template:
         src: .env.redmine.j2
-        dest: '{{ ansible_env.HOME }}/.env.redmine.j2.redmine'
+        dest: '{{ ansible_env.HOME }}/.env.redmine.j2'
         mode: '660'
       tags: deploy
     - name: start redmine
@@ -14,5 +14,18 @@
         image: redmine
         ports:
           - "{{ redmine_port }}:3000"
-        env_file: '{{ ansible_env.HOME }}/.env.redmine.j2.redmine'
+        env_file: '{{ ansible_env.HOME }}/.env.redmine.j2'
       tags: deploy
+
+- hosts: webservers
+  become: yes
+  tags: datadog
+  roles:
+    - datadog.dd
+
+  tasks:
+    - name: start datadog agent
+      service:
+        name: datadog-agent
+        state: restarted
+        enabled: yes

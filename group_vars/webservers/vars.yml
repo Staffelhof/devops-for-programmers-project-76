@@ -1,0 +1,7 @@
+REDMINE_DB_POSTGRES: "rc1d-p0k739qu5pm36ml1.mdb.yandexcloud.net"
+POSTGRESQL_PORT: "6432"
+POSTGRESQL_USER: "user1"
+POSTGRESQL_DBNAME: "db1"
+datadog_agent_flavor: "datadog-agent"
+datadog_api_key: "{{ datadog_api_key }}"
+datadog_site: "{{ datadog_site }}"
