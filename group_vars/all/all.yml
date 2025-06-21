@@ -1,7 +1,7 @@
 pip_install_packages:
   - name: docker
 ansible_python_interpreter: /usr/bin/python3
-
+anisble_user: anton
 redmine_port: 80
 
 datadog_checks:
