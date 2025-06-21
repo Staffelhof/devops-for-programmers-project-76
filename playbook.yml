@@ -16,6 +16,13 @@
           - "{{ redmine_port }}:3000"
         env_file: '{{ ansible_env.HOME }}/.env.redmine.j2'
       tags: deploy
+  roles:
+    - role: geerlingguy.pip
+      tags:
+        - prepare-servers
+    - role: geerlingguy.docker
+      tags:
+        - prepare-servers
 
 - hosts: webservers
   become: yes
